@@ -58,11 +58,11 @@ router.post("/", [auth, [check("name").not().isEmpty()]], async (req, res) => {
     });
     await project.save();
 
-    // TODO: update user's projects list
+    // Add project to user
+    let user = await User.findById({ id });
     await User.findOneAndUpdate(
       { _id: id },
-      { projects: project.id },
-      { new: true }
+      { projects: [...user.projects, project.id] }
     );
 
     res.json(project);
@@ -90,7 +90,13 @@ router.delete(
     const { id } = req.user;
 
     try {
+      // Remove project
       await Project.findOneAndRemove({ $and: [{ name }, { admins: id }] });
+
+      // Remove project to user
+      let user = await User.findById({ id });
+      let updatedProjects = user.projects.filter((p) => p !== project.id);
+      await User.findOneAndUpdate({ _id: id }, { projects: [updatedProjects] });
       res.json("Project deleted");
     } catch (err) {
       console.error(err.message);
