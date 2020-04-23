@@ -94,14 +94,70 @@ router.delete(
     const { id } = req.user;
 
     try {
-      // Remove project
-      await Project.findOneAndRemove({ $and: [{ name }, { admins: id }] });
+      // Logged user must be admin of the project
+      const project = await Project.findById({
+        $and: [{ _id: projectId }, { admins: id }],
+      });
 
-      // Remove project to user
-      let user = await User.findById({ id });
-      let updatedProjects = user.projects.filter((p) => p !== project.id);
-      await User.findOneAndUpdate({ _id: id }, { projects: [updatedProjects] });
-      res.json({ msg: "Project deleted" });
+      if (project) {
+        // Remove project
+        await Project.findOneAndRemove({ $and: [{ name }, { admins: id }] });
+
+        // Remove project to user
+        let user = await User.findById({ id });
+        let updatedProjects = user.projects.filter((p) => p !== project.id);
+        await User.findOneAndUpdate(
+          { _id: id },
+          { projects: [updatedProjects] }
+        );
+        res.json({ msg: "Project deleted" });
+      } else {
+        res.status(401).send("Insufficient privileges to delete project");
+      }
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
+  }
+);
+
+/**
+ * @route       POST api/projects/remove/
+ * @description Remove user from project
+ * @access      Private
+ */
+router.post(
+  "/remove",
+  [
+    auth,
+    check("projectId", "projectId is required"),
+    check("userId", "user is required"),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { projectId, userId } = req.body;
+
+    try {
+      // Logged user must be admin of the project
+      const project = await Project.findById({
+        $and: [{ _id: projectId }, { admins: req.user.id }],
+      });
+
+      if (project) {
+        const user = await User.findById({ _id: userId });
+        let updatedProjects = user.projects.filter((p) => p !== projectId);
+        await User.findOneAndUpdate(
+          { _id: userId },
+          { projects: [updatedProjects] }
+        );
+        res.json({ msg: "User removed" });
+      } else {
+        res.status(401).send("Insufficient privileges to remove user");
+      }
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");
