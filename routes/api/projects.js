@@ -14,7 +14,9 @@ router.get("/", auth, async (req, res) => {
     const { id } = req.user;
     const projects = await Project.find({
       $or: [{ users: id }, { admins: id }],
-    });
+    })
+      .populate("users", "name email")
+      .populate("admins", "name email");
 
     if (!projects) {
       return res.status(400).json({ msg: "No projects found." });
