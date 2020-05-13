@@ -159,7 +159,11 @@ router.delete(
           $and: [{ title }, { project: projectId }],
         });
       } else {
-        res.status(401).send("Insufficient privileges to delete");
+        res
+          .status(401)
+          .json({
+            errors: [{ msg: "Insufficient privileges to delete task" }],
+          });
       }
     } catch (err) {
       console.error(err.message);

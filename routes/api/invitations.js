@@ -23,7 +23,7 @@ router.get("/", auth, async (req, res) => {
       res.json({ invites });
     }
 
-    res.json({ msg: "No invitations found" });
+    res.json({ errors: [{ msg: "No invitations found" }] });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -43,7 +43,7 @@ router.get("/:projectId", auth, async (req, res) => {
       res.json({ invites });
     }
 
-    res.json({ msg: "No invitations found" });
+    res.json({ errors: [{ msg: "No invitations found" }] });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -130,7 +130,7 @@ router.delete(
       await Invitation.findOneAndRemove({
         $and: [{ receiver }, { project: projectId }],
       });
-      res.json({ msg: "Invitation deleted" });
+      res.json({ errors: [{ msg: "Invitation deleted" }] });
     } else {
       res.status(401).send("Insufficient privileges to delete");
     }

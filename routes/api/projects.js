@@ -19,7 +19,7 @@ router.get("/", auth, async (req, res) => {
       .populate("admins", "name email");
 
     if (!projects) {
-      return res.status(400).json({ msg: "No projects found." });
+      return res.status(400).json({ errors: [{ msg: "No projects found" }] });
     }
 
     res.json(projects);
@@ -112,9 +112,13 @@ router.delete(
           { _id: id },
           { $set: { projects: [updatedProjects] } }
         );
-        res.json({ msg: "Project deleted" });
+        res.json({ errors: [{ msg: "Project deleted" }] });
       } else {
-        res.status(401).send("Insufficient privileges to delete project");
+        res
+          .status(401)
+          .json({
+            errors: [{ msg: "Insufficient privileges to delete project" }],
+          });
       }
     } catch (err) {
       console.error(err.message);
@@ -158,7 +162,11 @@ router.post(
         );
         res.json({ msg: "User removed" });
       } else {
-        res.status(401).send("Insufficient privileges to remove user");
+        res
+          .status(401)
+          .json({
+            errors: [{ msg: "Insufficient privileges to remove user" }],
+          });
       }
     } catch (err) {
       console.error(err.message);

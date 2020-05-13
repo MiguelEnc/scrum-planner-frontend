@@ -137,7 +137,13 @@ router.delete(
         await Retrospective.findByIdAndRemove(retrospectiveId);
         res.json({ msg: "Retrospective deleted" });
       } else {
-        res.status(401).send("Insufficient privileges to delete");
+        res
+          .status(401)
+          .json({
+            errors: [
+              { msg: "Insufficient privileges to delete retrospective" },
+            ],
+          });
       }
     } catch (err) {
       console.error(err);
