@@ -40,7 +40,7 @@ router.get(
 router.get("/:taskId", auth, async (req, res) => {
   try {
     const taskId = req.params.taskId;
-    let task = await Task.findById({ _id: taskId });
+    let task = await Task.findById(taskId);
     const average = task.votes.reduce((a, b) => a + b, 0) / task.votes.length;
     let score = 0;
 
@@ -153,7 +153,7 @@ router.delete(
     const userId = req.user;
 
     try {
-      const project = await Project.findById({ _id: projectId });
+      const project = await Project.findById(projectId);
       if (project.admins.includes(userId)) {
         await Task.findOneAndRemove({
           $and: [{ title }, { project: projectId }],

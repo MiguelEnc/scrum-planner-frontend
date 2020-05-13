@@ -64,7 +64,7 @@ router.post(
       await project.save();
 
       // Add project to user
-      let user = await User.findById({ id });
+      let user = await User.findById(id);
       await User.findOneAndUpdate(
         { _id: id },
         { projects: [...user.projects, project.id] }
@@ -97,7 +97,7 @@ router.delete(
 
     try {
       // Logged user must be admin of the project
-      const project = await Project.findById({
+      const project = await Project.findOne({
         $and: [{ _id: projectId }, { admins: id }],
       });
 
@@ -106,7 +106,7 @@ router.delete(
         await Project.findOneAndRemove({ $and: [{ name }, { admins: id }] });
 
         // Remove project to user
-        let user = await User.findById({ id });
+        let user = await User.findById(id);
         let updatedProjects = user.projects.filter((p) => p !== project.id);
         await User.findOneAndUpdate(
           { _id: id },
@@ -145,12 +145,12 @@ router.post(
 
     try {
       // Logged user must be admin of the project
-      const project = await Project.findById({
+      const project = await Project.findOne({
         $and: [{ _id: projectId }, { admins: req.user.id }],
       });
 
       if (project) {
-        const user = await User.findById({ _id: userId });
+        const user = await User.findById(userId);
         let updatedProjects = user.projects.filter((p) => p !== projectId);
         await User.findOneAndUpdate(
           { _id: userId },

@@ -13,7 +13,7 @@ const { check, validationResult } = require("express-validator");
 router.get("/", auth, async (req, res) => {
   try {
     const { id } = req.user;
-    const user = await User.findById({ _id: id });
+    const user = await User.findById(id);
 
     const invites = await Invitation.find({
       $and: [{ receiver: user.email }, { status: "Pending" }],
