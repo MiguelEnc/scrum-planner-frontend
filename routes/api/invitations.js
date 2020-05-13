@@ -82,7 +82,7 @@ router.post(
       if (invitation) {
         await Invitation.findOneAndUpdate(
           { $and: [{ receiver }, { project: projectId }] },
-          { status }
+          { $set: status }
         );
 
         res.json(invitation);

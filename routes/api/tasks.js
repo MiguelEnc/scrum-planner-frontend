@@ -61,7 +61,7 @@ router.get("/:taskId", auth, async (req, res) => {
 
     task = await Task.findOneAndUpdate(
       { _id: taskId },
-      { score },
+      { $set: score },
       { new: true }
     );
     res.json(task);

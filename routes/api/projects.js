@@ -67,7 +67,7 @@ router.post(
       let user = await User.findById(id);
       await User.findOneAndUpdate(
         { _id: id },
-        { projects: [...user.projects, project.id] }
+        { $set: { projects: [...user.projects, project.id] } }
       );
 
       res.json(project);
@@ -80,7 +80,7 @@ router.post(
 
 /**
  * @route       DELETE api/projects
- * @description Delete a post
+ * @description Delete a project
  * @access      Private
  */
 router.delete(
@@ -110,7 +110,7 @@ router.delete(
         let updatedProjects = user.projects.filter((p) => p !== project.id);
         await User.findOneAndUpdate(
           { _id: id },
-          { projects: [updatedProjects] }
+          { $set: { projects: [updatedProjects] } }
         );
         res.json({ msg: "Project deleted" });
       } else {
@@ -154,7 +154,7 @@ router.post(
         let updatedProjects = user.projects.filter((p) => p !== projectId);
         await User.findOneAndUpdate(
           { _id: userId },
-          { projects: [updatedProjects] }
+          { $set: { projects: [updatedProjects] } }
         );
         res.json({ msg: "User removed" });
       } else {
