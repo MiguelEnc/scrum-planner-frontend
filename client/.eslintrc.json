@@ -1,0 +1,39 @@
+{
+  "root": true,
+  // Use general and react-specific recommended settings
+  // validate import errors
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "jsx": true
+    }
+  },
+  // Supported environments
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  // override recommended settings
+  "rules": {
+    "no-debugger": "off",
+    "no-console": "off",
+    "no-unused-vars": "warn",
+    "react/prop-types": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
