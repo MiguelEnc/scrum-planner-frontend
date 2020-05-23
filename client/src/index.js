@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App";
+import Landing from "./components/Landing/Landing.jsx";
+import "antd/dist/antd.css";
+import "./styles/styles.scss";
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<Landing />, document.getElementById("app"));

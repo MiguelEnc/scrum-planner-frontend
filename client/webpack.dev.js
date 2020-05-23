@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 process.env.NODE_ENV = "development";
 
@@ -25,7 +26,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/template.html",
-      favIcon: "./src/favicon.ico",
       inject: true,
       minify: {
         removeComments: true,
@@ -40,6 +40,7 @@ module.exports = {
         minifyURLs: true,
       },
     }),
+    new FaviconsWebpackPlugin("./src/assets/favicon.ico"),
   ],
   module: {
     rules: [
@@ -49,8 +50,22 @@ module.exports = {
         use: ["babel-loader"],
       },
       {
-        test: /\.{css|scss}$/,
-        use: ["style-loader", "css-loader"],
+        test: /\.(sass|scss|css)$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|svg|jpg|gif|jpeg|ico)$/,
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+        },
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2)$/i,
+        loader: "url-loader",
+        options: {
+          limit: 8192,
+        },
       },
     ],
   },
