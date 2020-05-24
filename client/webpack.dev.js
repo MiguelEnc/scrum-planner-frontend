@@ -6,6 +6,9 @@ process.env.NODE_ENV = "development";
 
 module.exports = {
   mode: "development",
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
   devtool: "cheap-module-source-map",
   entry: "./src/index.js",
   output: {
