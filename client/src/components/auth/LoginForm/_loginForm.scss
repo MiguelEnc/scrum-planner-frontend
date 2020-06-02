@@ -1,18 +1,15 @@
-#login {
-  height: 100%;
+#login__row {
+  position: relative;
+  top: 30vh;
+  margin-right: 10vw;
+}
 
-  #login__row {
-    position: relative;
-    top: 30%;
-  }
+#login__col {
+  padding: 20px;
+  border: $form-border;
+  background-color: $background-color;
 
-  #login__col {
-    padding: 20px;
-    border: $form-border;
-    background-color: $background-color;
-
-    #login__forgot-wrapper {
-      text-align: right;
-    }
+  #login__forgot-wrapper {
+    text-align: right;
   }
 }
