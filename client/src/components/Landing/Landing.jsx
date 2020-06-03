@@ -15,7 +15,7 @@ const bgStyle = {
 const Landing = () => {
   return (
     <div id="bg" style={bgStyle}>
-      <Row id="landing__row">
+      <Row id="landing__wrapper">
         <Col xs={24} lg={12} xxl={{ span: 10, offset: 2 }}>
           <Jumbotron />
         </Col>

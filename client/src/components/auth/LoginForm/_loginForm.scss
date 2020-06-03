@@ -1,17 +1,19 @@
-#login__row {
-  position: relative;
-  top: 30vh;
-  margin-right: 10vw;
-}
-
-#login__col {
+#login {
   padding: 20px;
   border: $form-border;
   background-color: $background-color;
   max-width: 316px;
   margin: 0 auto;
 
+  form {
+    width: 270px;
+  }
+
   #login__forgot-wrapper {
     text-align: right;
+  }
+
+  #login__register {
+    margin-bottom: 0;
   }
 }

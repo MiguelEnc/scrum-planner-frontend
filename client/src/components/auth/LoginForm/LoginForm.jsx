@@ -10,11 +10,10 @@ const LoginForm = () => {
   };
 
   return (
-    <div id="login__col">
+    <div id="login">
       <Form
         name="normal_login"
         className="login-form"
-        style={{ width: "270px" }}
         initialValues={{
           remember: true,
         }}
@@ -75,7 +74,7 @@ const LoginForm = () => {
           </Button>
         </Item>
         <Item noStyle>
-          <p style={{ marginBottom: 0 }}>
+          <p id="login__register">
             Or <Link to="/register">register now!</Link>
           </p>
         </Item>

@@ -1,28 +1,28 @@
-.jumbotron {
+.wrapper {
   padding: 4rem;
   margin-bottom: 2rem;
   border-radius: 0.3rem;
 }
 
 @media only screen and (max-width: 600px) {
-  .jumbotron {
+  .wrapper {
     padding: 2rem 1.5rem;
   }
 }
 
 @media only screen and (min-width: 992px) {
-  .jumbotron {
+  .wrapper {
     padding: 4rem 0 4rem 3.5rem;
   }
 }
 
 @media only screen and (min-width: 1200px) {
-  .jumbotron {
+  .wrapper {
     padding: 4rem 0 4rem 7rem;
   }
 }
 
-.display-4 {
+.wrapper__title {
   margin-bottom: 0.5rem;
   font-size: 4rem;
   font-weight: 300;
@@ -31,7 +31,7 @@
   color: white;
 }
 
-.lead {
+.wrapper__slogan {
   font-size: 1.25rem;
   font-weight: 300;
   margin-top: 0;
