@@ -8,6 +8,8 @@
   padding: 20px;
   border: $form-border;
   background-color: $background-color;
+  max-width: 316px;
+  margin: 0 auto;
 
   #login__forgot-wrapper {
     text-align: right;
