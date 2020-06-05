@@ -43,7 +43,7 @@ module.exports = {
         minifyURLs: true,
       },
     }),
-    new FaviconsWebpackPlugin("./src/assets/favicon.ico"),
+    new FaviconsWebpackPlugin("./src/assets/favicon.png"),
   ],
   module: {
     rules: [

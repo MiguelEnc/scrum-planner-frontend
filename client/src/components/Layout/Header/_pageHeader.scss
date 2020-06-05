@@ -1,0 +1,35 @@
+#header {
+  background-color: $dark-background;
+  overflow: hidden;
+
+  .header__logo {
+    float: left;
+
+    img {
+      height: 66px;
+    }
+  }
+
+  .ant-menu {
+    background-color: $dark-background;
+  }
+
+  .header__menu-item {
+    float: right;
+    color: white;
+  }
+
+  #header__notification {
+    padding: 0;
+
+    .notification-bell {
+      font-size: 20px;
+    }
+  }
+}
+
+// ant.design overrides
+.ant-menu.ant-menu-dark .ant-menu-item-selected,
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background-color: $primary-color;
+}
