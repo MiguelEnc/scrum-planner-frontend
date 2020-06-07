@@ -1,0 +1,44 @@
+#sideMenu {
+  background-color: white;
+  left: 0;
+}
+
+@media (max-width: 767px) {
+  #sideMenu {
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    position: absolute;
+    height: 93.2%;
+  }
+}
+
+// ant.design classes overrides
+.ant-menu-inline .ant-menu-item::after {
+  border-right: 3px solid $primary-color;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: $lighter-green;
+}
+
+.ant-menu-item-selected {
+  color: $menu-items-color;
+}
+
+.ant-menu-item:hover,
+.ant-menu-item-active,
+.ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+.ant-menu-submenu-active,
+.ant-menu-submenu-title:hover {
+  color: $menu-items-color;
+}
+
+.ant-menu-submenu-inline
+  > .ant-menu-submenu-title:hover
+  .ant-menu-submenu-arrow::before {
+  color: $menu-items-color;
+}
+
+.ant-layout-sider-zero-width-trigger {
+  top: 0px;
+}
