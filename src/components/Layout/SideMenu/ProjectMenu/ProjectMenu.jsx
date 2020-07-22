@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import {
   PlusOutlined,
@@ -19,7 +20,9 @@ const ProjectMenu = (props) => {
   return (
     <Fragment>
       <SubMenu parentMenu={parentMenu} key={_id} title={name} {...others}>
-        <Item icon={<ApartmentOutlined />}>Task Stimation</Item>
+        <Item icon={<ApartmentOutlined />}>
+          <Link to="/task-stimation">Task Stimation</Link>
+        </Item>
         <SubMenu title="Retrospectives" icon={<AppstoreOutlined />}>
           <Item icon={<PlusOutlined />}>New Board</Item>
           {retrospectives.map((r) => (

@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from "antd";
-import Jumbotron from "../Layout/Jumbotron/Jumbotron";
+import Jumbotron from "./Jumbotron/Jumbotron";
 import LoginForm from "../auth/LoginForm/LoginForm";
 
 import bgImage from "../../assets/landing.jpg";

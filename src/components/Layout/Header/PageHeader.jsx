@@ -9,15 +9,13 @@ import {
 import logo from "../../../assets/header-logo.png";
 
 const { Header } = Layout;
+const { Item } = Menu;
 
-const PageHeader = () => {
-  const logged = true;
-  const notification = true;
-
+const PageHeader = ({ logged, notification }) => {
   const AccountMenu = (
     <Menu style={{ top: "11px" }}>
-      <Menu.Item icon={<UserOutlined />}>My Account</Menu.Item>
-      <Menu.Item icon={<PoweroffOutlined />}>Sign Out</Menu.Item>
+      <Item icon={<UserOutlined />}>My Account</Item>
+      <Item icon={<PoweroffOutlined />}>Sign Out</Item>
     </Menu>
   );
 
@@ -29,7 +27,7 @@ const PageHeader = () => {
 
       {logged && (
         <Menu mode="horizontal">
-          <Menu.Item key="17" className="header__menu-item">
+          <Item key="1" className="header__menu-item">
             <Dropdown
               overlay={AccountMenu}
               placement="bottomRight"
@@ -37,29 +35,25 @@ const PageHeader = () => {
             >
               <Avatar>M</Avatar>
             </Dropdown>
-          </Menu.Item>
-          <Menu.Item
-            key="18"
-            className="header__menu-item"
-            id="header__notification"
-          >
+          </Item>
+          <Item key="2" className="header__menu-item" id="header__notification">
             {notification && (
               <Badge dot style={{ position: "absolute", left: "15px" }}>
                 <BellOutlined className="notification-bell" />
               </Badge>
             )}
             {!notification && <BellOutlined className="notification-bell" />}
-          </Menu.Item>
+          </Item>
         </Menu>
       )}
       {!logged && (
         <Menu theme="dark" mode="horizontal">
-          <Menu.Item key="19" className="header__menu-item">
+          <Item key="1" className="header__menu-item">
             Sign Up
-          </Menu.Item>
-          <Menu.Item key="20" className="header__menu-item">
+          </Item>
+          <Item key="2" className="header__menu-item">
             Sign In
-          </Menu.Item>
+          </Item>
         </Menu>
       )}
     </Header>
